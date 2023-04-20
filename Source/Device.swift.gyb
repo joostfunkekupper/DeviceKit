@@ -556,8 +556,8 @@ public enum Device {
 
     public var isZoomed: Bool? {
       guard isCurrent else { return nil }
-      if Int(UIScreen.main.scale.rounded()) == 3 {
-        // Plus-sized
+      let plusSizedModels: [Device] = [.iPhone6Plus, .iPhone6sPlus, .iPhone7Plus, .iPhone8Plus, .simulator(.iPhone6Plus), .simulator(.iPhone6sPlus),.simulator(.iPhone7Plus),.simulator(.iPhone8Plus)]
+      if Device.current.isOneOf(plusSizedModels) {
         return UIScreen.main.nativeScale > 2.7 && UIScreen.main.nativeScale < 3
       } else {
         return UIScreen.main.nativeScale > UIScreen.main.scale
